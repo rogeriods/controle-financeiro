@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<faces-config xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd"
+	version="2.2">
+
+	<navigation-rule>
+		<from-view-id>/login.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>gerenciaUsuario</from-outcome>
+			<to-view-id>/register.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<from-view-id>/profile.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>atualizar</from-outcome>
+			<to-view-id>/home.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<from-view-id>/altera_senha.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>esqueceuSenha</from-outcome>
+			<to-view-id>/altera_senha_sucesso.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<from-view-id>/register.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>novoUsuario</from-outcome>
+			<to-view-id>/login.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<managed-bean>
+		<managed-bean-name>painelFaces</managed-bean-name>
+		<managed-bean-class>br.com.rdsolutions.faces.PainelFaces</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+
+	<managed-bean>
+		<managed-bean-name>despesasFaces</managed-bean-name>
+		<managed-bean-class>br.com.rdsolutions.faces.DespesasFaces</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+
+	<managed-bean>
+		<managed-bean-name>receitasFaces</managed-bean-name>
+		<managed-bean-class>br.com.rdsolutions.faces.ReceitasFaces</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+
+	<managed-bean>
+		<managed-bean-name>tiposDRFaces</managed-bean-name>
+		<managed-bean-class>br.com.rdsolutions.faces.TiposDRFaces</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+
+	<managed-bean>
+		<managed-bean-name>loginFaces</managed-bean-name>
+		<managed-bean-class>br.com.rdsolutions.faces.LoginFaces</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+
+</faces-config>

@@ -1,0 +1,72 @@
+<!-- 
+/*
+ * Copyright 2018 the original author or authors.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ * 
+ * @author Rogério Domingos
+ * @since 1.0.0
+ */
+ -->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head>
+	<title>RDSolutions | Controle Financeiro</title>
+	<link href="resources/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+	<link href="resources/bootstrap/css/signin.css" rel="stylesheet" />
+</h:head>
+
+<h:body>
+	<f:view>
+		<h:form styleClass="form-signin">
+			<div class="text-center form-signin-logo">
+				<img src="resources/images/rdscodes-logo_black_login.png" />
+			</div>
+			
+			<div class="panel panel-default">
+				<div class="panel-body">
+					<h2>Recuperar Senha</h2>
+					<hr />
+					<p>Campos em (*) são de preenchimento obrigatório.</p>
+					<h:messages id="messages" showDetail="false"
+						styleClass="text-danger" />
+					<f:event listener="#{loginFaces.validaAlteracaoSenha}"
+						type="postValidate" />
+					<div class="form-group">
+						<label>E-mail *</label>
+						<h:inputText id="txt_email" label="E-mail" maxlength="80"
+							value="#{loginFaces.email}" required="true"
+							styleClass="form-control"
+							validatorMessage="Formato de e-mail inválido!">
+							<f:validateRegex
+								pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+						</h:inputText>
+					</div>
+					
+					<h:commandButton action="#{loginFaces.esqueceuSenha()}"
+						value="Enviar" styleClass="btn btn-lg btn-primary btn-block" />
+					<p>
+						<h:commandLink action="login.xhtml"
+							value="Clique aqui para voltar." immediate="true" />
+					</p>
+				</div>
+			</div>
+		</h:form>
+	</f:view>
+	<script src="resources/bootstrap/js/jquery-3.1.0.min.js"></script>
+	<script src="resources/bootstrap/js/bootstrap.min.js"></script>
+</h:body>
+</html>

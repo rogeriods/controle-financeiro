@@ -1,0 +1,123 @@
+<!-- 
+/*
+ * Copyright 2018 the original author or authors.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ * 
+ * @author Rogério Domingos
+ * @since 1.0.0
+ */
+ -->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head>
+	<title>RDSolutions | Controle Financeiro</title>
+	<link href="resources/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+</h:head>
+
+<h:body>
+	<f:view>
+		<h:form id="despesas-form">
+			<ui:include src="resources/includes/menubar.xhtml" />
+			<div class="container">
+				<ol class="breadcrumb">
+					<li><h:commandLink action="home.xhtml"
+							value="Painel de Controle" immediate="true" /></li>
+					<li><h:commandLink action="despesas.xhtml"
+							value="Controle de Despesas" immediate="true" /></li>
+					<li class="active">Deleta Despesa</li>
+				</ol>
+				
+				<h1>Deleta Despesa</h1>
+				<div class="alert alert-danger">
+					<strong>Atenção!</strong> Deseja realmente deletar este registro?
+				</div>
+				
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h3 class="panel-title">Form</h3>
+					</div>
+					
+					<div class="panel-body">
+						<div class="col-lg-6">
+							<div class="form-group">
+								<label>Data de Criação</label>
+								<h:inputText id="txt_data" disabled="true"
+									value="#{despesasFaces.objDespesa.data}"
+									styleClass="form-control">
+									<f:convertDateTime pattern="dd/MM/yyyy" timeZone="GMT-03:00" />
+								</h:inputText>
+							</div>
+							<div class="form-group">
+								<label>Data de Vencimento</label>
+								<h:inputText id="txt_data_vecto" styleClass="form-control"
+									value="#{despesasFaces.objDespesa.dataVencimento}"
+									disabled="true">
+									<f:convertDateTime pattern="dd/MM/yyyy" timeZone="GMT-03:00" />
+								</h:inputText>
+							</div>
+							<div class="form-group">
+								<label>Data de Pagamento</label>
+								<h:inputText id="txt_data_pagto" disabled="true"
+									styleClass="form-control"
+									value="#{despesasFaces.objDespesa.dataPagamento}">
+									<f:convertDateTime pattern="dd/MM/yyyy" timeZone="GMT-03:00" />
+								</h:inputText>
+							</div>
+						</div>
+						
+						<div class="col-lg-6">
+							<div class="form-group">
+								<label>Tipo de Despesa</label>
+								<h:selectOneMenu id="lst_tipo" styleClass="form-control"
+									disabled="true"
+									value="#{despesasFaces.objDespesa.idTipoDespesa}">
+									<f:selectItems value="#{tiposDRFaces.lstDespesas}" var="tipo"
+										itemLabel="#{tipo.descricao}" itemValue="#{tipo.id}" />
+								</h:selectOneMenu>
+							</div>
+							<div class="form-group">
+								<label>Descrição</label>
+								<h:inputText id="txt_descricao" disabled="true"
+									styleClass="form-control"
+									value="#{despesasFaces.objDespesa.descricao}" />
+							</div>
+							<div class="form-group">
+								<label>Valor</label>
+								<h:inputText id="txt_valor"
+									value="#{despesasFaces.objDespesa.valor}"
+									styleClass="form-control" disabled="true">
+									<f:convertNumber type="currency" locale="pt_BR" pattern="#0.00"
+										minFractionDigits="2" maxFractionDigits="2" />
+								</h:inputText>
+							</div>
+							<div class="btn-group" role="group" aria-label="...">
+								<h:commandButton value="Deletar"
+									action="#{despesasFaces.deleta()}" styleClass="btn btn-danger" />
+								<h:commandButton action="despesas.xhtml" value="Cancelar"
+									immediate="true" styleClass="btn btn-default" />
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</h:form>
+	</f:view>
+	<script src="resources/bootstrap/js/jquery-3.1.0.min.js"></script>
+	<script src="resources/bootstrap/js/bootstrap.min.js"></script>
+</h:body>
+</html>

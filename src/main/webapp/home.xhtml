@@ -1,0 +1,137 @@
+<!-- 
+/*
+ * Copyright 2018 the original author or authors.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ * 
+ * @author Rogério Domingos
+ * @since 1.0.0
+ */
+ -->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head>
+	<title>RDSolutions | Controle Financeiro</title>
+	<link href="resources/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+</h:head>
+
+<h:body>
+	<f:view>
+		<h:form id="home-form">
+			<ui:include src="resources/includes/menubar.xhtml" />
+			<div class="container">
+				<ol class="breadcrumb">
+					<li class="active">Painel de Controle</li>
+				</ol>
+				
+				<h1>Painel de Controle</h1>
+				<p>
+					Sejam bem-vindos ao RDSolutions Controle Financeiro. <br /> Esta é uma aplicação
+					web simples de contas a pagar e receber utilizando a linguagem de
+					programação java.
+				</p>
+				
+				<h3>
+					Resumo<small> - Receitas e despesas. </small>
+				</h3>
+				<hr />
+				
+				<div class="col-sm-3">
+					<h3 class="text-primary">Saldo</h3>
+					<h:panelGrid columns="2" styleClass="table">
+						<h:outputText value="Do Mês: " />
+						<h:outputText value="#{painelFaces.saldoMes}"
+							styleClass="text-primary">
+							<f:convertNumber type="currency" currencySymbol="R$ "
+								locale="pt_BR" />
+						</h:outputText>
+						<h:outputText value="Geral: " />
+						<h:outputText value="#{painelFaces.saldoGeral}"
+							styleClass="text-primary">
+							<f:convertNumber type="currency" currencySymbol="R$ "
+								locale="pt_BR" />
+						</h:outputText>
+					</h:panelGrid>
+				</div>
+				
+				<div class="col-sm-3">
+					<h3 class="text-success">
+						Total<small> Receitas</small>
+					</h3>
+					<h:panelGrid columns="2" styleClass="table">
+						<h:outputText value="Do Mês: " />
+						<h:outputText value="#{painelFaces.totalRecMes}"
+							styleClass="text-success">
+							<f:convertNumber type="currency" currencySymbol="R$ "
+								locale="pt_BR" />
+						</h:outputText>
+					</h:panelGrid>
+				</div>
+				
+				<div class="col-sm-3">
+					<h3 class="text-warning">
+						Total<small> Despesas</small>
+					</h3>
+					<h:panelGrid columns="2" styleClass="table">
+						<h:outputText value="Vencidas: " />
+						<h:outputText value="#{painelFaces.totalDesVencidas}"
+							styleClass="text-danger">
+							<f:convertNumber type="currency" currencySymbol="R$ "
+								locale="pt_BR" />
+						</h:outputText>
+						<h:outputText value="Abertas do Mês: " />
+						<h:outputText value="#{painelFaces.totalDesMes}"
+							styleClass="text-danger">
+							<f:convertNumber type="currency" currencySymbol="R$ "
+								locale="pt_BR" />
+						</h:outputText>
+						<h:outputText value="Pagas do Mês: " />
+						<h:outputText value="#{painelFaces.totalDesPagMes}"
+							styleClass="text-danger">
+							<f:convertNumber type="currency" currencySymbol="R$ "
+								locale="pt_BR" />
+						</h:outputText>
+					</h:panelGrid>
+				</div>
+				
+				<div class="col-sm-3">
+					<h3 class="text-danger">
+						Despesas<small> Vencidas</small>
+					</h3>
+					<h:dataTable value="#{painelFaces.lstDespesasVencidas}"
+						var="despesa"
+						rendered="#{painelFaces.lstDespesasVencidas.size() > 0}"
+						styleClass="table">
+						<h:column>
+							<h:outputText value="#{despesa.dataVencimento}"
+								styleClass="text-danger">
+								<f:convertDateTime pattern="dd/MM/yyyy" />
+							</h:outputText>
+							<h:outputText value=" - " />
+							<h:commandLink
+								action="#{despesasFaces.preparaParaEditar(despesa.id)}"
+								value="#{despesa.descricao}" />
+						</h:column>
+					</h:dataTable>
+				</div>
+			</div>
+		</h:form>
+	</f:view>
+	<script src="resources/bootstrap/js/jquery-3.1.0.min.js"></script>
+	<script src="resources/bootstrap/js/bootstrap.min.js"></script>
+</h:body>
+</html>
